@@ -1,5 +1,5 @@
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 public class Task{
     private static int taskNumber = 0;
     private int id;
@@ -8,7 +8,7 @@ public class Task{
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public void Task(String description){
+    public Task(String description){
         this.description = description;
         this.status = "new";
         this.createdAt = LocalDateTime.now();
@@ -18,4 +18,5 @@ public class Task{
     }
 
     
+
 }
