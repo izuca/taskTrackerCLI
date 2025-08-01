@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-
 public class Cli {
-    ArrayList taskList;
+    ArrayList<Task> taskList;
 
     public void run(String[] args){
         if(args.length > 0){
@@ -9,28 +8,41 @@ public class Cli {
                 case "hello":
                     System.out.println("Hello World");
                     break;
-                case "info":
-                    System.out.println("Eu sou o Task Tracer");
+                case "list":
+                    this.listTask();
                     break;
                 case "new":
                     this.addTask(args[1]);
                     break;
                 default:
                     System.out.println("Comando não reconhecido!");
-                    break;
             }
         }else{
-            System.out.println("Nenhum parâmetro enviado");
+            System.out.println("Argumento não pode ser nulo");
         }
     }
 
-    //Finalizar classe addTask
+    
     public void addTask(String description){
-        //Verificacao do parametro deve ser no .run
         if(description == null){
-          throw Exception; // Como funciona?   
+          System.out.println("Argumento não pode ser nulo");
         }
-        //verificar se há o array de tasks
+        if(taskList == null)
+            taskList = new ArrayList<>();
         Task task = new Task(description);
+        taskList.add(task);
+        System.out.println("Task adicionada!");
+    }
+
+    public void listTask(){
+        if(taskList == null){
+            System.out.println("Lista de tasks vazia");
+        } else {
+            System.out.println("--------------Lista de Tasks--------------");
+            for(Task task : taskList){
+                System.out.println(task.getId() + ": " + task.getDescription() + " ---> " + task.getStatus());
+            }
+        }
+
     }
 }
