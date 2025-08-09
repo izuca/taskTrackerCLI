@@ -23,7 +23,7 @@ public class Cli {
                         this.listTask();
                         break;
                     case "new":
-                        this.addTask(comandos[1]);
+                        this.addTask(linha);
                         break;
                     case "exit":
                         endCli = true;
@@ -36,14 +36,21 @@ public class Cli {
     }
 
     public void addTask(String description){
-        if(description == null){
-          System.out.println("insira tasktracker new <tarefa>");
+        String[] palavras = description.split("\"");
+        String tarefa = "";
+        try {
+            tarefa = palavras[1];
+        } catch (Exception e) {
+            System.out.println("Insira a tarefa entre \" \"");
         }
-        if(taskList == null)
-            taskList = new ArrayList<>();
-        Task task = new Task(description);
-        taskList.add(task);
-        System.out.println("Task adicionada! (ID: " + task.getId() + ")");
+
+        if(!tarefa.isEmpty()){
+            if(taskList == null)
+                taskList = new ArrayList<>();
+            Task task = new Task(tarefa);
+            taskList.add(task);
+            System.out.println("Task adicionada! (ID: " + task.getId() + ")");
+        }
     }
 
 
