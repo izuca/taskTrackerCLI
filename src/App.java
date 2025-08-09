@@ -1,6 +1,6 @@
 
 public class App {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
         Cli cli = new Cli();
         cli.run(args);
     }
