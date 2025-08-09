@@ -57,7 +57,4 @@ public class Task{
     public void setUpdatedAt(){
         this.updatedAt = LocalDateTime.now();
     }
-
-    
-
 }

@@ -5,8 +5,9 @@ public class Cli {
     public void run(String[] args){
         if(args.length > 0){
             switch (args[0]) {
-                case "hello":
-                    System.out.println("Hello World");
+                case "info":
+                    System.out.println("Bem vindo ao taskTracker!");
+                    System.out.println("Use 'taskTracker new <tarefa>' para adicionar uma nova task");
                     break;
                 case "list":
                     this.listTask();
@@ -22,7 +23,6 @@ public class Cli {
         }
     }
 
-    
     public void addTask(String description){
         if(description == null){
           System.out.println("Argumento não pode ser nulo");
