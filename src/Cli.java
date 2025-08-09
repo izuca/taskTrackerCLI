@@ -1,38 +1,52 @@
 import java.util.ArrayList;
-public class Cli {
-    ArrayList<Task> taskList;
+import java.util.Scanner;
 
-    public void run(String[] args){
-        if(args.length > 0){
-            switch (args[0]) {
-                case "info":
-                    System.out.println("Bem vindo ao taskTracker!");
-                    System.out.println("Use 'taskTracker new <tarefa>' para adicionar uma nova task");
-                    break;
-                case "list":
-                    this.listTask();
-                    break;
-                case "new":
-                    this.addTask(args[1]);
-                    break;
-                default:
-                    System.out.println("Comando não reconhecido!");
+public class Cli {
+    private ArrayList<Task> taskList;
+
+    public void run(){
+        boolean endCli = false;
+
+        while (!endCli) {
+            Scanner scanner = new Scanner(System.in);
+            String linha = scanner.nextLine();
+            String[] comandos = linha.split(" ");
+
+            if(comandos.length > 0){
+                switch (comandos[0]) {
+                    case "info":
+                        System.out.println("Bem vindo ao taskTracker!");
+                        System.out.println("Use 'taskTracker new <tarefa>' para adicionar uma nova task");
+                        System.out.println("Use 'taskTracker exit' para desligar");
+                        break;
+                    case "list":
+                        this.listTask();
+                        break;
+                    case "new":
+                        this.addTask(comandos[1]);
+                        break;
+                    case "exit":
+                        endCli = true;
+                        break;
+                    default:
+                        System.out.println("Comando não reconhecido!");
+                }
             }
-        }else{
-            System.out.println("Argumento não pode ser nulo");
         }
     }
 
     public void addTask(String description){
         if(description == null){
-          System.out.println("Argumento não pode ser nulo");
+          System.out.println("insira tasktracker new <tarefa>");
         }
         if(taskList == null)
             taskList = new ArrayList<>();
         Task task = new Task(description);
         taskList.add(task);
-        System.out.println("Task adicionada!");
+        System.out.println("Task adicionada! (ID: " + task.getId() + ")");
     }
+
+
 
     public void listTask(){
         if(taskList == null){
