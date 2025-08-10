@@ -34,7 +34,7 @@ public class Cli {
             }
         }
     }
-
+    //Ao invés de registrar no objeto, criar um arquivo .JSON
     public void addTask(String description){
         String[] palavras = description.split("\"");
         String tarefa = "";
@@ -53,7 +53,15 @@ public class Cli {
         }
     }
 
+    //Completar método de update
+    public void updateTask(int id) {
 
+    }
+
+    //Completar método de delete
+    public void deleteTask(int id) {
+
+    }
 
     public void listTask(){
         if(taskList == null){
